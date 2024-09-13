@@ -1,26 +1,31 @@
 import path from "path";
 import webpack from "webpack";
 
-const config: webpack.Configuration = {
-  target: "node",
-  entry: "./src/index.sender.ts",
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: "ts-loader",
-        exclude: /node_modules/,
-      },
-    ],
-  },
-  resolve: {
-    extensions: [".ts", ".js"],
-  },
-  mode: "development",
-};
+export default function ({ service }: { service: string }) {
+  if (service !== "receiver" && service !== "sender") {
+    throw new Error("Invalid service name");
+  }
+  const config: webpack.Configuration = {
+    target: "node",
+    entry: `./src/index.${service}.ts`,
+    output: {
+      path: path.resolve(__dirname, "dist"),
+      filename: "bundle.js",
+    },
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          use: "ts-loader",
+          exclude: /node_modules/,
+        },
+      ],
+    },
+    resolve: {
+      extensions: [".ts", ".js"],
+    },
+    mode: "development",
+  };
 
-export default config;
+  return config;
+}

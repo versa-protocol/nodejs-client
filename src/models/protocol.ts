@@ -3,6 +3,7 @@ export interface Envelope {
   encrypted: string;
   nonce: string;
 }
+
 export interface TransactionHandles {
   customer_email?: string;
   customer_email_domain?: string;
@@ -10,6 +11,7 @@ export interface TransactionHandles {
   card_last_four?: string;
   versa_client_ids?: string[];
 }
+
 export interface Receiver {
   org_id: string;
   secret: string;
