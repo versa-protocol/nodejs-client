@@ -15,7 +15,7 @@ export async function checkout(
     receipt_id,
   };
   const payloadJson = JSON.stringify(payload);
-  const url = `${registryUrl}/register`;
+  const url = `${registryUrl}/checkout`;
   console.log(`Sending registration request to: ${url}`);
 
   const response = await fetch(url, {
