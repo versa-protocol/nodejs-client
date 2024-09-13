@@ -17,7 +17,7 @@ export const configure = (app: Express) => {
       return;
     }
     const headers = req.headers;
-    const requestToken = headers["X-Request-Signature"];
+    const requestToken = headers["x-request-signature"];
     if (!requestToken) {
       res.status(400).send("Missing X-Request-Signature header");
       return;
