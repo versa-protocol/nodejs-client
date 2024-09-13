@@ -2,8 +2,8 @@ import path from "path";
 import webpack from "webpack";
 
 const config: webpack.Configuration = {
-  target: 'node',
-  entry: "./src/index.ts",
+  target: "node",
+  entry: "./src/index.sender.ts",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
@@ -20,7 +20,7 @@ const config: webpack.Configuration = {
   resolve: {
     extensions: [".ts", ".js"],
   },
-  mode: "development"
+  mode: "development",
 };
 
 export default config;
