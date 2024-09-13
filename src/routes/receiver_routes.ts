@@ -1,7 +1,6 @@
 import { Express, Request, Response } from "express";
 import express from "express";
-import packageJson from "../../package.json";
-import { verifyWithSecret } from "../lib/hmac";
+import { verifyWithSecret } from "../lib/hmac_verify";
 
 export const configure = (app: Express) => {
   app.use(express.raw({ type: "*/*" }));

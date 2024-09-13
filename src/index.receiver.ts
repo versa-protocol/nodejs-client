@@ -1,4 +1,4 @@
-import * as receiverRoutes from "./routes/receiver.routes";
+import * as receiverRoutes from "./routes/receiver_routes";
 import * as serviceInfo from "./routes/service_info";
 import express from "express";
 
