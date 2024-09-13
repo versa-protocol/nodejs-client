@@ -1,12 +1,6 @@
-import { Envelope, Receiver } from "../models/protocol";
+import { Envelope, Receiver, ReceiverPayload } from "../models/protocol";
 import { encrypt } from "./encrypt";
 import { generateToken } from "./hmac_util";
-
-interface ReceiverPayload {
-  sender_client_id: string;
-  receipt_id: string;
-  envelope: Envelope;
-}
 
 export async function encryptAndSend(
   receiver: Receiver,
