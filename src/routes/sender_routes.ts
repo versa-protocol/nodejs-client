@@ -1,7 +1,8 @@
-import { Express, Request, Response } from "express";
-import { TransactionHandles } from "../models/protocol";
-import { register } from "../lib/register";
 import { encryptAndSend } from "../lib/encrypt_and_send";
+import { Express, Request, Response } from "express";
+import { register } from "../lib/register";
+import { TransactionHandles } from "../models/protocol";
+import express from "express";
 
 interface SendRequestPayload {
   receipt: any;
@@ -54,15 +55,16 @@ async function send(payload: SendRequestPayload): Promise<void> {
 }
 
 export const configure = (app: Express) => {
-  app.post("/send", (req: Request, res: Response) => {
+  app.use(express.json());
+  app.post("/send", async (req: Request, res: Response) => {
     const payload: SendRequestPayload = req.body;
-    console.log(payload);
-    send(payload)
-      .then(() => {
-        res.status(200).send("OK");
-      })
-      .catch((e) => {
-        res.status(500).send;
-      });
+    try {
+      await send(payload);
+    } catch (e) {
+      console.error(`Failed to send: ${e}`);
+      res.status(500).send("Failed to send");
+      return;
+    }
+    res.status(202).send("Accepted");
   });
 };
