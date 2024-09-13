@@ -7,6 +7,9 @@ settings:
 importers:
   .:
     dependencies:
+      "@noble/ciphers":
+        specifier: ^1.0.0
+        version: 1.0.0
       express:
         specifier: ^4.21.0
         version: 4.21.0
@@ -143,6 +146,13 @@ packages:
       {
         integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==,
       }
+
+  "@noble/ciphers@1.0.0":
+    resolution:
+      {
+        integrity: sha512-wH5EHOmLi0rEazphPbecAzmjd12I6/Yv/SiHdkA9LSycsQk7RuuTp7am5/o62qYr0RScE7Pc9icXGBbsr6cesA==,
+      }
+    engines: { node: ^14.21.3 || >=16 }
 
   "@nodelib/fs.scandir@2.1.5":
     resolution:
@@ -2768,6 +2778,8 @@ snapshots:
       tslib: 2.7.0
 
   "@leichtgewicht/ip-codec@2.0.5": {}
+
+  "@noble/ciphers@1.0.0": {}
 
   "@nodelib/fs.scandir@2.1.5":
     dependencies:
