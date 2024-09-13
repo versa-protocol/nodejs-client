@@ -8,7 +8,7 @@ WORKDIR /app
 FROM base AS build
 ARG service
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-RUN pnpm run build-$service
+RUN pnpm run build-$service --env prod='true'
 
 FROM node:20-slim AS runner
 COPY --from=build /app/dist /dist

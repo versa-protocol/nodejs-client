@@ -1,10 +1,11 @@
 import path from "path";
 import webpack from "webpack";
 
-export default function ({ service }: { service: string }) {
+export default function ({ service, prod }: { service: string; prod: string }) {
   if (service !== "receiver" && service !== "sender") {
     throw new Error("Invalid service name");
   }
+  const mode = prod === "true" ? "production" : "development";
   const config: webpack.Configuration = {
     target: "node",
     entry: `./src/index.${service}.ts`,
@@ -24,7 +25,7 @@ export default function ({ service }: { service: string }) {
     resolve: {
       extensions: [".ts", ".js"],
     },
-    mode: "development",
+    mode,
   };
 
   return config;
