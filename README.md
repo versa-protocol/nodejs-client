@@ -31,8 +31,8 @@ Run the image with the necessary environment variables:
 ```sh
 docker run \
     -e REGISTRY_URL=https://registry.versa.org \
-    -e VERSA_CLIENT_ID=versa_cid_xxxxxxxxxxxxx \
-    -e VERSA_CLIENT_SECRET=versa_csk_xxxxxxxxx \
+    -e CLIENT_ID=versa_cid_xxxxxxxxxxxxx \
+    -e CLIENT_SECRET=versa_csk_xxxxxxxxx \
     -p 8080:8080 \
     87c6faff1243
 ```
