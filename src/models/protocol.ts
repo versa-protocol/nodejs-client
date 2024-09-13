@@ -1,4 +1,8 @@
 // Todo: move to an SDK?
+export interface Envelope {
+  encrypted: string;
+  nonce: string;
+}
 export interface TransactionHandles {
   customer_email?: string;
   customer_email_domain?: string;

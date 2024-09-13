@@ -1,10 +1,8 @@
 import { siv } from "@noble/ciphers/aes";
 import { randomBytes } from "@noble/ciphers/webcrypto";
+import { Envelope } from "../models/protocol";
 
-export function encryptAESGCM_SIV(
-  plaintext: Uint8Array,
-  key: Uint8Array,
-): { encrypted: string; nonce: string } {
+export function encrypt(plaintext: Uint8Array, key: Uint8Array): Envelope {
   if (key.length !== 32) {
     throw new Error("Key must be 32 bytes (256 bits) for AES-GCM-SIV");
   }
@@ -15,7 +13,6 @@ export function encryptAESGCM_SIV(
 
   const ciphertext = stream.encrypt(plaintext);
 
-  // Base64 encode
   const encrypted = Buffer.from(ciphertext).toString("base64");
   const nonce = Buffer.from(iv).toString("base64");
   return { encrypted, nonce };

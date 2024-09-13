@@ -1,6 +1,7 @@
 import { Express, Request, Response } from "express";
 import { TransactionHandles } from "../models/protocol";
 import { register } from "../lib/register";
+import { encryptAndSend } from "../lib/encrypt_and_send";
 
 interface SendRequestPayload {
   receipt: any;
@@ -35,7 +36,16 @@ async function send(payload: SendRequestPayload): Promise<void> {
       `Encrypting and sending envelope to receiver ${receiver.org_id} at ${receiver.address}`,
     );
     try {
-      // await encryptAndSend(receiver, client_id, registrationResponse.receipt_id, registrationResponse.encryption_key, payload.receipt);
+      const res = await encryptAndSend(
+        receiver,
+        client_id,
+        registrationResponse.receipt_id,
+        registrationResponse.encryption_key,
+        payload.receipt,
+      );
+      if (!res.ok) {
+        console.warn(`Failed to send to receiver: ${res.statusText}`);
+      }
       console.log(`Successfully sent to receiver: ${receiver.address}`);
     } catch (e) {
       console.error(`Failed to send to receiver: ${e}`);
