@@ -24,7 +24,13 @@ export interface ReceiverPayload {
   envelope: Envelope;
 }
 
-export interface RegisterReceiptResponse {
+export interface ReceiptRegistrationRequest {
+  schema_version: string;
+  handles: TransactionHandles;
+  transaction_id?: string;
+}
+
+export interface ReceiptRegistrationResponse {
   receipt_id: string;
   encryption_key: string;
   receivers: Receiver[];

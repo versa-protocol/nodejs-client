@@ -8,6 +8,7 @@ interface SendRequestPayload {
   receipt: any;
   schema_version: string;
   handles: TransactionHandles;
+  transaction_id?: string;
 }
 
 async function send(payload: SendRequestPayload): Promise<void> {
@@ -26,6 +27,7 @@ async function send(payload: SendRequestPayload): Promise<void> {
     client_id,
     client_secret,
     payload.handles,
+    payload.transaction_id || null,
   );
   console.log(
     `Registration successful, received ${registrationResponse.receivers.length} receivers`,
