@@ -32,8 +32,8 @@ export const configure = (app: Express) => {
       return;
     }
 
-    console.log(req.body.toString());
-    const receiverPayload = JSON.parse(req.body.toString()) as ReceiverPayload;
+    const receiverPayload = JSON.parse(req.body.toString())
+      .data as ReceiverPayload;
 
     const checkoutResponse = await checkout(
       client_id,

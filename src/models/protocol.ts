@@ -67,3 +67,9 @@ export interface Checkout {
   sender: Sender;
   handles: TransactionHandles;
 }
+
+export interface WebhookEvent<T> {
+  event_id?: string | null;
+  event: "receipt";
+  data: T;
+}

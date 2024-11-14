@@ -1,4 +1,4 @@
-import { Envelope, Receiver, ReceiverPayload } from "../models/protocol";
+import { Receiver, ReceiverPayload, WebhookEvent } from "../models/protocol";
 import { encrypt } from "./encrypt";
 import { generateToken } from "./hmac_util";
 
@@ -17,13 +17,16 @@ export async function encryptAndSend(
     Buffer.from(key, "base64"),
   );
 
-  const payload: ReceiverPayload = {
-    sender_client_id,
-    receipt_id,
-    envelope,
+  const event: WebhookEvent<ReceiverPayload> = {
+    event: "receipt",
+    data: {
+      sender_client_id,
+      receipt_id,
+      envelope,
+    },
   };
 
-  const payloadJson = JSON.stringify(payload);
+  const payloadJson = JSON.stringify(event);
 
   const hmacToken = generateToken(Buffer.from(payloadJson), receiver.secret);
 
